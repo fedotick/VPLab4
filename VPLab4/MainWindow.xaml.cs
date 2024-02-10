@@ -16,9 +16,6 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace VPLab4
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -28,6 +25,8 @@ namespace VPLab4
             richTextBoxEnterText.TextChanged += RichTextBoxEnterText_TextChanged;
             richTextBoxDeleteWord.TextChanged += RichTextBoxDeleteWord_TextChanged;
             richTextBoxRepetitionWord.TextChanged += RichTextBoxRepetitionWord_TextChanged;
+
+            buttonDelete.Click += ButtonDelete_Click;
         }
 
         private void RichTextBoxEnterText_TextChanged(object sender, TextChangedEventArgs e)
@@ -59,6 +58,18 @@ namespace VPLab4
             {
                 label.Content = "";
             }
+        }
+
+        private void ButtonDelete_Click(object sender, RoutedEventArgs e)
+        {
+            TextRange textRangeEnterText = new TextRange(richTextBoxEnterText.Document.ContentStart, richTextBoxEnterText.Document.ContentEnd);
+            TextRange textRangeDeleteWord = new TextRange(richTextBoxDeleteWord.Document.ContentStart, richTextBoxDeleteWord.Document.ContentEnd);
+
+            string enterText = textRangeEnterText.Text.TrimStart('\r', '\n').TrimEnd('\r', '\n');
+            string deleteWord = textRangeDeleteWord.Text.TrimStart('\r', '\n').TrimEnd('\r', '\n');
+
+            string result = TextEditor.DeleteWord(enterText, deleteWord);
+            textRangeEnterText.Text = result;
         }
     }
 }
