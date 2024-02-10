@@ -27,6 +27,7 @@ namespace VPLab4
             richTextBoxRepetitionWord.TextChanged += RichTextBoxRepetitionWord_TextChanged;
 
             buttonDelete.Click += ButtonDelete_Click;
+            buttonTurnOverEveryWord.Click += buttonTurnOverEveryWord_Click;
         }
 
         private void RichTextBoxEnterText_TextChanged(object sender, TextChangedEventArgs e)
@@ -71,6 +72,15 @@ namespace VPLab4
             textRangeEnterText.Text = result;
 
             Placeholder(richTextBoxEnterText, labelEnterText, "Enter text...");
+        }
+
+        private void buttonTurnOverEveryWord_Click(object sender, RoutedEventArgs e)
+        {
+            TextRange textRangeEnterText = new TextRange(richTextBoxEnterText.Document.ContentStart, richTextBoxEnterText.Document.ContentEnd);
+
+            string enterText = textRangeEnterText.Text.TrimStart('\r', '\n').TrimEnd('\r', '\n');
+
+            textRangeEnterText.Text = TextEditor.TurnOverEveryWord(enterText);
         }
     }
 }

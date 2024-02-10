@@ -133,7 +133,7 @@
                 </FlowDocument>
             </RichTextBox>
             <Button x:Name="buttonDelete" Grid.Row="0" Style="{DynamicResource Button}" Width="120" HorizontalAlignment="Right">Delete</Button>
-            <Button Grid.Row="2" Style="{DynamicResource Button}" Width="260">Turn over every word</Button>
+            <Button x:Name="buttonTurnOverEveryWord" Grid.Row="2" Style="{DynamicResource Button}" Width="260">Turn over every word</Button>
             <Label x:Name="labelRepetitionWord" Grid.Row="4" Width="120" HorizontalAlignment="Left">Enter word...</Label>
             <RichTextBox x:Name="richTextBoxRepetitionWord" Grid.Row="4" Width="120" HorizontalAlignment="Left">
                 <FlowDocument>
