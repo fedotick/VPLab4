@@ -99,11 +99,11 @@
             <ColumnDefinition Width="50"/>
         </Grid.ColumnDefinitions>
 
-        <Label Grid.Column="1" Grid.Row="1">
+        <Label x:Name="labelEnterText" Grid.Column="1" Grid.Row="1">
             Enter text...
         </Label>
-        
-        <RichTextBox Grid.Row="1" Grid.Column="1" Name="richText" VerticalScrollBarVisibility="Auto">
+
+        <RichTextBox x:Name="richTextBoxEnterText" Grid.Row="1" Grid.Column="1" VerticalScrollBarVisibility="Auto">
             <FlowDocument>
                 <Paragraph>
                 </Paragraph>
@@ -125,8 +125,8 @@
                 <RowDefinition Height="30"/>
             </Grid.RowDefinitions>
 
-            <Label Grid.Row="0" Width="120" HorizontalAlignment="Left">Enter word...</Label>
-            <RichTextBox Grid.Row="0" Width="120" HorizontalAlignment="Left">
+            <Label x:Name="labelDeleteWord" Grid.Row="0" Width="120" HorizontalAlignment="Left">Enter word...</Label>
+            <RichTextBox x:Name="richTextBoxDeleteWord" Grid.Row="0" Width="120" HorizontalAlignment="Left">
                 <FlowDocument>
                     <Paragraph>
                     </Paragraph>
@@ -134,8 +134,8 @@
             </RichTextBox>
             <Button Grid.Row="0" Style="{DynamicResource Button}" Width="120" HorizontalAlignment="Right">Delete</Button>
             <Button Grid.Row="2" Style="{DynamicResource Button}" Width="260">Turn over every word</Button>
-            <Label Grid.Row="4" Width="120" HorizontalAlignment="Left">Enter word...</Label>
-            <RichTextBox Grid.Row="4" Width="120" HorizontalAlignment="Left">
+            <Label x:Name="labelRepetitionWord" Grid.Row="4" Width="120" HorizontalAlignment="Left">Enter word...</Label>
+            <RichTextBox x:Name="richTextBoxRepetitionWord" Grid.Row="4" Width="120" HorizontalAlignment="Left">
                 <FlowDocument>
                     <Paragraph>
                     </Paragraph>
