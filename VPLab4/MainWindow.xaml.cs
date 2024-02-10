@@ -31,26 +31,25 @@ namespace VPLab4
 
         private void RichTextBoxEnterText_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Placeholder(sender, labelEnterText, "Enter text...");
+            Placeholder((RichTextBox)sender, labelEnterText, "Enter text...");
         }
 
         private void RichTextBoxDeleteWord_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Placeholder(sender, labelDeleteWord, "Enter word...");
+            Placeholder((RichTextBox)sender, labelDeleteWord, "Enter word...");
         }
 
         private void RichTextBoxRepetitionWord_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Placeholder(sender, labelRepetitionWord, "Enter word...");
+            Placeholder((RichTextBox)sender, labelRepetitionWord, "Enter word...");
         }
 
-        private void Placeholder(object sender, Label label, string placeholderText)
+        private void Placeholder(RichTextBox richTextBox, Label label, string placeholderText)
         {
-            RichTextBox richTextBox = (RichTextBox)sender;
             TextRange textRange = new TextRange(richTextBox.Document.ContentStart, richTextBox.Document.ContentEnd);
             string text = textRange.Text;
 
-            if (text.Length == 2)
+            if (text.Length <= 2)
             {
                 label.Content = placeholderText;
             }
@@ -70,6 +69,8 @@ namespace VPLab4
 
             string result = TextEditor.DeleteWord(enterText, deleteWord);
             textRangeEnterText.Text = result;
+
+            Placeholder(richTextBoxEnterText, labelEnterText, "Enter text...");
         }
     }
 }
