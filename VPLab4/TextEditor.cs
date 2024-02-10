@@ -37,5 +37,27 @@ namespace VPLab4
             Array.Reverse(charArray);
             return new string(charArray);
         }
+
+        public static int RepetitionsOfWord(string text, string searchWord)
+        {
+            text = text.TrimStart().TrimEnd();
+            searchWord = searchWord.TrimStart().TrimEnd();
+
+            if (text == "" || searchWord == "") return 0;
+
+            int count = 0;
+            
+            string[] words = Regex.Split(text, @"\W+");
+
+            foreach (string word in words)
+            {
+                if (searchWord == word)
+                {
+                    count++;
+                }
+            }
+
+            return count;
+        }
     }
 }

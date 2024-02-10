@@ -134,14 +134,14 @@
             </RichTextBox>
             <Button x:Name="buttonDelete" Grid.Row="0" Style="{DynamicResource Button}" Width="120" HorizontalAlignment="Right">Delete</Button>
             <Button x:Name="buttonTurnOverEveryWord" Grid.Row="2" Style="{DynamicResource Button}" Width="260">Turn over every word</Button>
-            <Label x:Name="labelRepetitionWord" Grid.Row="4" Width="120" HorizontalAlignment="Left">Enter word...</Label>
+            <Label x:Name="labelEnterRepetitionWord" Grid.Row="4" Width="120" HorizontalAlignment="Left">Enter word...</Label>
             <RichTextBox x:Name="richTextBoxRepetitionWord" Grid.Row="4" Width="120" HorizontalAlignment="Left">
                 <FlowDocument>
                     <Paragraph>
                     </Paragraph>
                 </FlowDocument>
             </RichTextBox>
-            <Label Grid.Row="4" Width="120" Foreground="White" HorizontalAlignment="Right" Content="Repetitions: 0">
+            <Label x:Name="labelRepetitionWord" Grid.Row="4" Width="120" Foreground="White" HorizontalAlignment="Right" Content="Repetitions: 0">
                 <Label.Background>
                     <SolidColorBrush Color="#092E1E"/>
                 </Label.Background>

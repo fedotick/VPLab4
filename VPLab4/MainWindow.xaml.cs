@@ -27,12 +27,13 @@ namespace VPLab4
             richTextBoxRepetitionWord.TextChanged += RichTextBoxRepetitionWord_TextChanged;
 
             buttonDelete.Click += ButtonDelete_Click;
-            buttonTurnOverEveryWord.Click += buttonTurnOverEveryWord_Click;
+            buttonTurnOverEveryWord.Click += ButtonTurnOverEveryWord_Click;
         }
 
         private void RichTextBoxEnterText_TextChanged(object sender, TextChangedEventArgs e)
         {
             Placeholder((RichTextBox)sender, labelEnterText, "Enter text...");
+            RepetitionsOfWord((RichTextBox)sender, richTextBoxRepetitionWord);
         }
 
         private void RichTextBoxDeleteWord_TextChanged(object sender, TextChangedEventArgs e)
@@ -42,7 +43,8 @@ namespace VPLab4
 
         private void RichTextBoxRepetitionWord_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Placeholder((RichTextBox)sender, labelRepetitionWord, "Enter word...");
+            Placeholder((RichTextBox)sender, labelEnterRepetitionWord, "Enter word...");
+            RepetitionsOfWord(richTextBoxEnterText, (RichTextBox)sender);
         }
 
         private void Placeholder(RichTextBox richTextBox, Label label, string placeholderText)
@@ -74,13 +76,24 @@ namespace VPLab4
             Placeholder(richTextBoxEnterText, labelEnterText, "Enter text...");
         }
 
-        private void buttonTurnOverEveryWord_Click(object sender, RoutedEventArgs e)
+        private void ButtonTurnOverEveryWord_Click(object sender, RoutedEventArgs e)
         {
             TextRange textRangeEnterText = new TextRange(richTextBoxEnterText.Document.ContentStart, richTextBoxEnterText.Document.ContentEnd);
 
             string enterText = textRangeEnterText.Text.TrimStart('\r', '\n').TrimEnd('\r', '\n');
 
             textRangeEnterText.Text = TextEditor.TurnOverEveryWord(enterText);
+        }
+
+        private void RepetitionsOfWord(RichTextBox richTextBoxEnterText, RichTextBox richTextBoxRepetitionWord)
+        {
+            TextRange textRangeEnterText = new TextRange(richTextBoxEnterText.Document.ContentStart, richTextBoxEnterText.Document.ContentEnd);
+            TextRange textRangeRepetitionWord = new TextRange(richTextBoxRepetitionWord.Document.ContentStart, richTextBoxRepetitionWord.Document.ContentEnd);
+
+            string enterText = textRangeEnterText.Text.TrimStart('\r', '\n').TrimEnd('\r', '\n');
+            string repetitionWord = textRangeRepetitionWord.Text.TrimStart('\r', '\n').TrimEnd('\r', '\n');
+
+            labelRepetitionWord.Content = "Repetitions: " + TextEditor.RepetitionsOfWord(enterText, repetitionWord);
         }
     }
 }
