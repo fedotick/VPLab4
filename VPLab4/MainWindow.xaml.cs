@@ -29,6 +29,7 @@ namespace VPLab4
             buttonDelete.Click += ButtonDelete_Click;
             buttonTurnOverEveryWord.Click += ButtonTurnOverEveryWord_Click;
             buttonRemoveExtraSpaces.Click += ButtonRemoveExtraSpaces_Click;
+            buttonEncode.Click += ButtonEncode_Click;
         }
 
         private void RichTextBoxEnterText_TextChanged(object sender, TextChangedEventArgs e)
@@ -114,6 +115,15 @@ namespace VPLab4
             string enterText = textRangeEnterText.Text.TrimStart('\r', '\n').TrimEnd('\r', '\n');
 
             labelCountWords.Content = "Words: " + TextEditor.CountWords(enterText);
+        }
+
+        private void ButtonEncode_Click(object sender, RoutedEventArgs e)
+        {
+            TextRange textRangeEnterText = new TextRange(richTextBoxEnterText.Document.ContentStart, richTextBoxEnterText.Document.ContentEnd);
+
+            string enterText = textRangeEnterText.Text.TrimStart('\r', '\n').TrimEnd('\r', '\n');
+
+            textRangeEnterText.Text = TextEditor.Encode(enterText, 2);
         }
     }
 }

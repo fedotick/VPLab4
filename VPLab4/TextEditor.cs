@@ -75,5 +75,17 @@ namespace VPLab4
 
             return words.Length;
         }
+
+        public static string Encode(string text, int codeKey)
+        {
+            char[] letters = new char[text.Length];
+
+            for (int i = 0; i < text.Length; i++)
+            {
+                letters[i] = (char)(text[i] + codeKey);
+            }
+
+            return new string(letters);
+        }
     }
 }
