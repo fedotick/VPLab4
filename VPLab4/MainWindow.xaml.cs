@@ -30,6 +30,7 @@ namespace VPLab4
             buttonTurnOverEveryWord.Click += ButtonTurnOverEveryWord_Click;
             buttonRemoveExtraSpaces.Click += ButtonRemoveExtraSpaces_Click;
             buttonEncode.Click += ButtonEncode_Click;
+            buttonDecode.Click += ButtonDecode_Click;
         }
 
         private void RichTextBoxEnterText_TextChanged(object sender, TextChangedEventArgs e)
@@ -124,6 +125,15 @@ namespace VPLab4
             string enterText = textRangeEnterText.Text.TrimStart('\r', '\n').TrimEnd('\r', '\n');
 
             textRangeEnterText.Text = TextEditor.Encode(enterText, 2);
+        }
+
+        private void ButtonDecode_Click(object sender, RoutedEventArgs e)
+        {
+            TextRange textRangeEnterText = new TextRange(richTextBoxEnterText.Document.ContentStart, richTextBoxEnterText.Document.ContentEnd);
+
+            string enterText = textRangeEnterText.Text.TrimStart('\r', '\n').TrimEnd('\r', '\n');
+
+            textRangeEnterText.Text = TextEditor.Encode(enterText, -2);
         }
     }
 }

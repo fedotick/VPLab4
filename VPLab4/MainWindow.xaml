@@ -148,7 +148,7 @@
             </Label>
             <Button x:Name="buttonRemoveExtraSpaces" Grid.Row="6" Style="{DynamicResource Button}" Width="260">Remove extra spaces</Button>
             <Button x:Name="buttonEncode" Grid.Row="8" Style="{DynamicResource Button}" Width="120" HorizontalAlignment="Left">Encode</Button>
-            <Button Grid.Row="8" Style="{DynamicResource Button}" Width="120" HorizontalAlignment="Right">Decode</Button>
+            <Button x:Name="buttonDecode" Grid.Row="8" Style="{DynamicResource Button}" Width="120" HorizontalAlignment="Right">Decode</Button>
         </Grid>
     </Grid>
 </Window>
