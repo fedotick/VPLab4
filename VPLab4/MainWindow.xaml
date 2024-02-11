@@ -146,7 +146,7 @@
                     <SolidColorBrush Color="#092E1E"/>
                 </Label.Background>
             </Label>
-            <Button Grid.Row="6" Style="{DynamicResource Button}" Width="260">Remove spaces</Button>
+            <Button x:Name="buttonRemoveExtraSpaces" Grid.Row="6" Style="{DynamicResource Button}" Width="260">Remove extra spaces</Button>
             <Button Grid.Row="8" Style="{DynamicResource Button}" Width="120" HorizontalAlignment="Right">Decode</Button>
             <Button Grid.Row="8" Style="{DynamicResource Button}" Width="120" HorizontalAlignment="Left">Encode</Button>
         </Grid>

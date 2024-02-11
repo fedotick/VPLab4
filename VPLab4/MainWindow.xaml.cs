@@ -28,6 +28,7 @@ namespace VPLab4
 
             buttonDelete.Click += ButtonDelete_Click;
             buttonTurnOverEveryWord.Click += ButtonTurnOverEveryWord_Click;
+            buttonRemoveExtraSpaces.Click += ButtonRemoveExtraSpaces_Click;
         }
 
         private void RichTextBoxEnterText_TextChanged(object sender, TextChangedEventArgs e)
@@ -94,6 +95,15 @@ namespace VPLab4
             string repetitionWord = textRangeRepetitionWord.Text.TrimStart('\r', '\n').TrimEnd('\r', '\n');
 
             labelRepetitionWord.Content = "Repetitions: " + TextEditor.RepetitionsOfWord(enterText, repetitionWord);
+        }
+
+        private void ButtonRemoveExtraSpaces_Click(object sender, RoutedEventArgs e)
+        {
+            TextRange textRangeEnterText = new TextRange(richTextBoxEnterText.Document.ContentStart, richTextBoxEnterText.Document.ContentEnd);
+
+            string enterText = textRangeEnterText.Text.TrimStart('\r', '\n').TrimEnd('\r', '\n');
+
+            textRangeEnterText.Text = TextEditor.RemoveExtraSpaces(enterText);
         }
     }
 }

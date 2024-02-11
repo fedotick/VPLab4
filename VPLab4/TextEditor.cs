@@ -59,5 +59,10 @@ namespace VPLab4
 
             return count;
         }
+
+        public static string RemoveExtraSpaces(string text)
+        {
+            return Regex.Replace(text, @"\s+", " ").Trim();
+        }
     }
 }
