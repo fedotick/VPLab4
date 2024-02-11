@@ -35,6 +35,7 @@ namespace VPLab4
         {
             Placeholder((RichTextBox)sender, labelEnterText, "Enter text...");
             RepetitionsOfWord((RichTextBox)sender, richTextBoxRepetitionWord);
+            CountWords((RichTextBox)sender);
         }
 
         private void RichTextBoxDeleteWord_TextChanged(object sender, TextChangedEventArgs e)
@@ -104,6 +105,15 @@ namespace VPLab4
             string enterText = textRangeEnterText.Text.TrimStart('\r', '\n').TrimEnd('\r', '\n');
 
             textRangeEnterText.Text = TextEditor.RemoveExtraSpaces(enterText);
+        }
+
+        private void CountWords(RichTextBox richTextBoxEnterText)
+        {
+            TextRange textRangeEnterText = new TextRange(richTextBoxEnterText.Document.ContentStart, richTextBoxEnterText.Document.ContentEnd);
+
+            string enterText = textRangeEnterText.Text.TrimStart('\r', '\n').TrimEnd('\r', '\n');
+
+            labelCountWords.Content = "Words: " + TextEditor.CountWords(enterText);
         }
     }
 }

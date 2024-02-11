@@ -64,5 +64,16 @@ namespace VPLab4
         {
             return Regex.Replace(text, @"\s+", " ").Trim();
         }
+
+        public static int CountWords(string text)
+        {
+            text = text.Trim();
+
+            if (text == "") return 0;
+
+            string[] words = Regex.Split(text, @"\W+");
+
+            return words.Length;
+        }
     }
 }

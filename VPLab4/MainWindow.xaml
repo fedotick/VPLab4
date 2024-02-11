@@ -110,7 +110,7 @@
             </FlowDocument>
         </RichTextBox>
 
-        <Label Grid.Column="1" Grid.Row="2" Background="Transparent" Foreground="White">Words: 0</Label>
+        <Label x:Name="labelCountWords" Grid.Column="1" Grid.Row="2" Background="Transparent" Foreground="White">Words: 0</Label>
 
         <Grid Grid.Row="1" Grid.Column="3">
             <Grid.RowDefinitions>
