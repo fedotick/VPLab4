@@ -70,11 +70,13 @@ namespace VPLab4
         private void ButtonDelete_Click(object sender, RoutedEventArgs e)
         {
             string enterText = GetText(richTextBoxEnterText);
-            string deleteWord = GetText(richTextBoxDeleteWord);
+            string deleteWord = GetWord(GetText(richTextBoxDeleteWord));
 
-            string result = TextEditor.DeleteWord(enterText, GetWord(deleteWord));
-
-            SetText(richTextBoxEnterText, result);
+            if (!string.IsNullOrEmpty(deleteWord) && TextEditor.CountWords(enterText) != 0)
+            {
+                string result = TextEditor.DeleteWord(enterText, deleteWord);
+                SetText(richTextBoxEnterText, result);
+            }
 
             Placeholder(richTextBoxEnterText, labelEnterText, "Enter text...");
         }
