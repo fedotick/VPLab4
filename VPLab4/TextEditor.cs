@@ -67,14 +67,14 @@ namespace VPLab4
 
         public static string Encode(string text, int codeKey)
         {
-            char[] letters = new char[text.Length];
+            StringBuilder result = new StringBuilder(text.Length);
 
             for (int i = 0; i < text.Length; i++)
             {
-                letters[i] = (char)(text[i] + codeKey);
+                result.Append((char)(text[i] + codeKey));
             }
 
-            return new string(letters);
+            return result.ToString();
         }
     }
 }
