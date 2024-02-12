@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -71,7 +72,7 @@ namespace VPLab4
             string enterText = GetTextFromRichTextBox(richTextBoxEnterText);
             string deleteWord = GetTextFromRichTextBox(richTextBoxDeleteWord);
 
-            string result = TextEditor.DeleteWord(enterText, deleteWord);
+            string result = TextEditor.DeleteWord(enterText, GetWord(deleteWord));
 
             SetTextInRichTextBox(richTextBoxEnterText, result);
 
@@ -92,7 +93,7 @@ namespace VPLab4
             string enterText = GetTextFromRichTextBox(richTextBoxEnterText);
             string repetitionWord = GetTextFromRichTextBox(richTextBoxRepetitionWord);
 
-            labelRepetitionWord.Content = "Repetitions: " + TextEditor.RepetitionsOfWord(enterText, repetitionWord);
+            labelRepetitionWord.Content = "Repetitions: " + TextEditor.RepetitionsOfWord(enterText, GetWord(repetitionWord));
         }
 
         private void ButtonRemoveExtraSpaces_Click(object sender, RoutedEventArgs e)
@@ -140,5 +141,13 @@ namespace VPLab4
             richTextBox.Document.Blocks.Add(new Paragraph(new Run(newText)));
         }
 
+        public string GetWord(string text, int index = 0)
+        {
+            MatchCollection words = Regex.Matches(text, @"\b\w+\b");
+
+            if (words.Count > 0) return words[index].Value;
+
+            return string.Empty;
+        }
     }
 }
