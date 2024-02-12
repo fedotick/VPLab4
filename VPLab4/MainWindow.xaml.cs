@@ -74,7 +74,7 @@ namespace VPLab4
 
             string result = TextEditor.DeleteWord(enterText, GetWord(deleteWord));
 
-            SetTextInRichTextBox(richTextBoxEnterText, result);
+            SetText(richTextBoxEnterText, result);
 
             Placeholder(richTextBoxEnterText, labelEnterText, "Enter text...");
         }

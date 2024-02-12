@@ -17,15 +17,20 @@ namespace VPLab4
 
         public static string TurnOverEveryWord(string text)
         {
-            string[] words = Regex.Split(text, @"\W+");
-
-            if (words[0] == "") return text;
-
-            HashSet<string> uniqueWords = new HashSet<string>(words);
-
-            foreach (string word in uniqueWords)
+            for (int i = 0; i < text.Length; i++)
             {
-                text = text.Replace(word, FlipWord(word));
+                if (char.IsLetter(text[i]))
+                {
+                    for (int j = i + 1; i < text.Length; j++)
+                    {
+                        if (!char.IsLetter(text[j]))
+                        {
+                            text = text.Remove(i, j - i).Insert(i, new string(text.Substring(i, j - i).Reverse().ToArray()));
+                            i = j;
+                            break;
+                        }
+                    }
+                }
             }
 
             return text;
