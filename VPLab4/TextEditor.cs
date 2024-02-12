@@ -12,7 +12,15 @@ namespace VPLab4
     {
         public static string DeleteWord(string text, string word)
         {
-            return text.Replace(word, "");
+            int index = text.IndexOf(word);
+
+            while (index >= 0)
+            {
+                text = text.Remove(index, word.Length);
+                index = text.IndexOf(word);
+            }
+
+            return text;
         }
 
         public static string TurnOverEveryWord(string text)
