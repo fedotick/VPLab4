@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:VPLab4"
         mc:Ignorable="d"
         Title="Text editor" Height="370" Width="775"
-        Icon="/Resources/logo-white.png">
+        Icon="/Resources/logo-white.png"
+        ResizeMode="NoResize">
     <Window.Resources>
 
         <Style TargetType="{x:Type RichTextBox}">
