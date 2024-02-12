@@ -62,13 +62,7 @@ namespace VPLab4
 
         public static int CountWords(string text)
         {
-            text = text.Trim();
-
-            if (text == "") return 0;
-
-            string[] words = Regex.Split(text, @"\W+");
-
-            return words.Length;
+            return Regex.Matches(text, @"\b\w+\b").Count;
         }
 
         public static string Encode(string text, int codeKey)
