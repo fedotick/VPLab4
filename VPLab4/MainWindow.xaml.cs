@@ -69,8 +69,8 @@ namespace VPLab4
 
         private void ButtonDelete_Click(object sender, RoutedEventArgs e)
         {
-            string enterText = GetTextFromRichTextBox(richTextBoxEnterText);
-            string deleteWord = GetTextFromRichTextBox(richTextBoxDeleteWord);
+            string enterText = GetText(richTextBoxEnterText);
+            string deleteWord = GetText(richTextBoxDeleteWord);
 
             string result = TextEditor.DeleteWord(enterText, GetWord(deleteWord));
 
@@ -81,61 +81,61 @@ namespace VPLab4
 
         private void ButtonTurnOverEveryWord_Click(object sender, RoutedEventArgs e)
         {
-            string enterText = GetTextFromRichTextBox(richTextBoxEnterText);
+            string enterText = GetText(richTextBoxEnterText);
 
             string result = TextEditor.TurnOverEveryWord(enterText);
 
-            SetTextInRichTextBox(richTextBoxEnterText, result);
+            SetText(richTextBoxEnterText, result);
         }
 
         private void RepetitionsOfWord(RichTextBox richTextBoxEnterText, RichTextBox richTextBoxRepetitionWord)
         {
-            string enterText = GetTextFromRichTextBox(richTextBoxEnterText);
-            string repetitionWord = GetTextFromRichTextBox(richTextBoxRepetitionWord);
+            string enterText = GetText(richTextBoxEnterText);
+            string repetitionWord = GetText(richTextBoxRepetitionWord);
 
             labelRepetitionWord.Content = "Repetitions: " + TextEditor.RepetitionsOfWord(enterText, GetWord(repetitionWord));
         }
 
         private void ButtonRemoveExtraSpaces_Click(object sender, RoutedEventArgs e)
         {
-            string enterText = GetTextFromRichTextBox(richTextBoxEnterText);
+            string enterText = GetText(richTextBoxEnterText);
 
             string result = TextEditor.RemoveExtraSpaces(enterText);
 
-            SetTextInRichTextBox(richTextBoxEnterText, result);
+            SetText(richTextBoxEnterText, result);
         }
 
         private void CountWords(RichTextBox richTextBoxEnterText)
         {
-            string enterText = GetTextFromRichTextBox(richTextBoxEnterText);
+            string enterText = GetText(richTextBoxEnterText);
 
             labelCountWords.Content = "Words: " + TextEditor.CountWords(enterText);
         }
 
         private void ButtonEncode_Click(object sender, RoutedEventArgs e)
         {
-            string enterText = GetTextFromRichTextBox(richTextBoxEnterText);
+            string enterText = GetText(richTextBoxEnterText);
 
             string result = TextEditor.Encode(enterText, 2);
 
-            SetTextInRichTextBox(richTextBoxEnterText, result);
+            SetText(richTextBoxEnterText, result);
         }
 
         private void ButtonDecode_Click(object sender, RoutedEventArgs e)
         {
-            string enterText = GetTextFromRichTextBox(richTextBoxEnterText);
+            string enterText = GetText(richTextBoxEnterText);
 
             string result = TextEditor.Encode(enterText, -2);
 
-            SetTextInRichTextBox(richTextBoxEnterText, result);
+            SetText(richTextBoxEnterText, result);
         }
 
-        private string GetTextFromRichTextBox(RichTextBox richTextBox)
+        private string GetText(RichTextBox richTextBox)
         {
             return new TextRange(richTextBox.Document.ContentStart, richTextBox.Document.ContentEnd).Text;
         }
 
-        public void SetTextInRichTextBox(RichTextBox richTextBox, string newText)
+        public void SetText(RichTextBox richTextBox, string newText)
         {
             richTextBox.Document.Blocks.Clear();
             richTextBox.Document.Blocks.Add(new Paragraph(new Run(newText)));
