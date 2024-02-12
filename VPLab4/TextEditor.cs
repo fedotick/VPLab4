@@ -36,27 +36,17 @@ namespace VPLab4
             return text;
         }
 
-        public static string FlipWord(string word)
-        {
-            char[] charArray = word.ToCharArray();
-            Array.Reverse(charArray);
-            return new string(charArray);
-        }
-
         public static int RepetitionsOfWord(string text, string searchWord)
         {
-            text = text.TrimStart().TrimEnd();
-            searchWord = searchWord.TrimStart().TrimEnd();
+            MatchCollection words = Regex.Matches(text, @"\b\w+\b");
 
             if (text == "" || searchWord == "") return 0;
 
             int count = 0;
-            
-            string[] words = Regex.Split(text, @"\W+");
 
-            foreach (string word in words)
+            for (int i = 0; i < words.Count; i++)
             {
-                if (searchWord == word)
+                if (words[i].Value == searchWord)
                 {
                     count++;
                 }
