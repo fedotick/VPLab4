@@ -68,72 +68,77 @@ namespace VPLab4
 
         private void ButtonDelete_Click(object sender, RoutedEventArgs e)
         {
-            TextRange textRangeEnterText = new TextRange(richTextBoxEnterText.Document.ContentStart, richTextBoxEnterText.Document.ContentEnd);
-            TextRange textRangeDeleteWord = new TextRange(richTextBoxDeleteWord.Document.ContentStart, richTextBoxDeleteWord.Document.ContentEnd);
-
-            string enterText = textRangeEnterText.Text.TrimStart('\r', '\n').TrimEnd('\r', '\n');
-            string deleteWord = textRangeDeleteWord.Text.TrimStart('\r', '\n').TrimEnd('\r', '\n');
+            string enterText = GetTextFromRichTextBox(richTextBoxEnterText);
+            string deleteWord = GetTextFromRichTextBox(richTextBoxDeleteWord);
 
             string result = TextEditor.DeleteWord(enterText, deleteWord);
-            textRangeEnterText.Text = result;
+
+            SetTextInRichTextBox(richTextBoxEnterText, result);
 
             Placeholder(richTextBoxEnterText, labelEnterText, "Enter text...");
         }
 
         private void ButtonTurnOverEveryWord_Click(object sender, RoutedEventArgs e)
         {
-            TextRange textRangeEnterText = new TextRange(richTextBoxEnterText.Document.ContentStart, richTextBoxEnterText.Document.ContentEnd);
+            string enterText = GetTextFromRichTextBox(richTextBoxEnterText);
 
-            string enterText = textRangeEnterText.Text.TrimStart('\r', '\n').TrimEnd('\r', '\n');
+            string result = TextEditor.TurnOverEveryWord(enterText);
 
-            textRangeEnterText.Text = TextEditor.TurnOverEveryWord(enterText);
+            SetTextInRichTextBox(richTextBoxEnterText, result);
         }
 
         private void RepetitionsOfWord(RichTextBox richTextBoxEnterText, RichTextBox richTextBoxRepetitionWord)
         {
-            TextRange textRangeEnterText = new TextRange(richTextBoxEnterText.Document.ContentStart, richTextBoxEnterText.Document.ContentEnd);
-            TextRange textRangeRepetitionWord = new TextRange(richTextBoxRepetitionWord.Document.ContentStart, richTextBoxRepetitionWord.Document.ContentEnd);
-
-            string enterText = textRangeEnterText.Text.TrimStart('\r', '\n').TrimEnd('\r', '\n');
-            string repetitionWord = textRangeRepetitionWord.Text.TrimStart('\r', '\n').TrimEnd('\r', '\n');
+            string enterText = GetTextFromRichTextBox(richTextBoxEnterText);
+            string repetitionWord = GetTextFromRichTextBox(richTextBoxRepetitionWord);
 
             labelRepetitionWord.Content = "Repetitions: " + TextEditor.RepetitionsOfWord(enterText, repetitionWord);
         }
 
         private void ButtonRemoveExtraSpaces_Click(object sender, RoutedEventArgs e)
         {
-            TextRange textRangeEnterText = new TextRange(richTextBoxEnterText.Document.ContentStart, richTextBoxEnterText.Document.ContentEnd);
+            string enterText = GetTextFromRichTextBox(richTextBoxEnterText);
 
-            string enterText = textRangeEnterText.Text.TrimStart('\r', '\n').TrimEnd('\r', '\n');
+            string result = TextEditor.RemoveExtraSpaces(enterText);
 
-            textRangeEnterText.Text = TextEditor.RemoveExtraSpaces(enterText);
+            SetTextInRichTextBox(richTextBoxEnterText, result);
         }
 
         private void CountWords(RichTextBox richTextBoxEnterText)
         {
-            TextRange textRangeEnterText = new TextRange(richTextBoxEnterText.Document.ContentStart, richTextBoxEnterText.Document.ContentEnd);
-
-            string enterText = textRangeEnterText.Text.TrimStart('\r', '\n').TrimEnd('\r', '\n');
+            string enterText = GetTextFromRichTextBox(richTextBoxEnterText);
 
             labelCountWords.Content = "Words: " + TextEditor.CountWords(enterText);
         }
 
         private void ButtonEncode_Click(object sender, RoutedEventArgs e)
         {
-            TextRange textRangeEnterText = new TextRange(richTextBoxEnterText.Document.ContentStart, richTextBoxEnterText.Document.ContentEnd);
+            string enterText = GetTextFromRichTextBox(richTextBoxEnterText);
 
-            string enterText = textRangeEnterText.Text.TrimStart('\r', '\n').TrimEnd('\r', '\n');
+            string result = TextEditor.Encode(enterText, 2);
 
-            textRangeEnterText.Text = TextEditor.Encode(enterText, 2);
+            SetTextInRichTextBox(richTextBoxEnterText, result);
         }
 
         private void ButtonDecode_Click(object sender, RoutedEventArgs e)
         {
-            TextRange textRangeEnterText = new TextRange(richTextBoxEnterText.Document.ContentStart, richTextBoxEnterText.Document.ContentEnd);
+            string enterText = GetTextFromRichTextBox(richTextBoxEnterText);
 
-            string enterText = textRangeEnterText.Text.TrimStart('\r', '\n').TrimEnd('\r', '\n');
+            string result = TextEditor.Encode(enterText, -2);
 
-            textRangeEnterText.Text = TextEditor.Encode(enterText, -2);
+            SetTextInRichTextBox(richTextBoxEnterText, result);
         }
+
+        private string GetTextFromRichTextBox(RichTextBox richTextBox)
+        {
+            return new TextRange(richTextBox.Document.ContentStart, richTextBox.Document.ContentEnd).Text;
+        }
+
+        public void SetTextInRichTextBox(RichTextBox richTextBox, string newText)
+        {
+            richTextBox.Document.Blocks.Clear();
+            richTextBox.Document.Blocks.Add(new Paragraph(new Run(newText)));
+        }
+
     }
 }
